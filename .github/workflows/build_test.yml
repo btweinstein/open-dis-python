@@ -28,4 +28,15 @@ jobs:
         poetry install --with dev
     - name: Test with pytest
       run: |
-        poetry run pytest
+        poetry run pytest --junitxml=./test_results/test_results.xml --cov=opendis --cov-report term --cov-report=xml:./test_results/coverage.xml
+    - name: Upload Test Results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: JUnit Tests
+        path: test_results/test_results.xml
+        reporter: java-junit
+    - name: Upload Code Coverage
+      uses: codecov/codecov-action@v4
+      with:
+        files: test_results/coverage.xml
