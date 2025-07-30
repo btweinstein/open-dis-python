@@ -37,6 +37,6 @@ jobs:
         path: test_results/test_results.xml
         reporter: java-junit
     - name: Upload Code Coverage
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v3
       with:
         files: test_results/coverage.xml
