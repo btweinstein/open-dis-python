@@ -36,7 +36,8 @@ jobs:
         name: JUnit Tests
         path: test_results/test_results.xml
         reporter: java-junit
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+    - name: Pytest coverage comment
+      uses: MishaKav/pytest-coverage-comment@main
       with:
-        files: ./test_results/coverage.xml
+        pytest-xml-coverage-path: ./test_results/coverage.xml
+        junitxml-path: ./test_results/test_results.xml
